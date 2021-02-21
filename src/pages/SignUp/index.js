@@ -27,15 +27,22 @@ const Page = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setDisabled(true);
+    setError('');
 
-    const json = await api.login(email, password);
-  /*
+    if(password !== confirmPassword) {
+      setError('Senhas não batem!');
+      setDisabled(false);
+      return;
+    }
+
+    const json = await api.register(name, email, password, states);
+
     if(json.error) {
       setError(json.error);
     } else {
-      doLogin(json.token, rememberPassword);
+      doLogin(json.token);
       window.location.href = '/';
-    }  */
+    }
 
     setDisabled(false);
   }
@@ -118,7 +125,7 @@ const Page = () => {
           <div className="area">
             <div className="area--title"></div>
             <div className="area--input">
-              <button disabled={disabled}>Fazer Login</button>
+              <button disabled={disabled}>Cadastrar</button>
             </div>
           </div>
         </form>

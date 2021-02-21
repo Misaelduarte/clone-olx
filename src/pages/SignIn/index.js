@@ -26,7 +26,7 @@ const Page = () => {
       window.location.href = '/';
     }
 
-    setDisabled(false);
+    setDisabled(false)
   }
 
   return (

@@ -60,11 +60,42 @@ const OlxApi = {
     return json;
   },
 
+  register:async (name, email, password, states) => {
+    const json = await apiFetchPost(
+      '/user/signup',
+      {name, email, password, state:states}
+    );
+    return json;
+  },
+
   getState:async () => {
     const json = await apiFetchGet(
       '/states'
     );
     return json.states;
+  },
+
+  getCategories:async () => {
+    const json = await apiFetchGet(
+      '/categories'
+    );
+    return json.categories;
+  },
+
+  getAds:async (options) => {
+    const json = await apiFetchGet(
+      '/ad/list',
+      options
+    );
+    return json;
+  },
+
+  getAd:async (id, other = false) => {
+    const json = await apiFetchGet(
+      '/ad/item',
+      {id, other}
+    );
+      return json;
   }
 
 };
